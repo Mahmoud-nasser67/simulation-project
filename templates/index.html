@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة الأزرار</title>
+    <!-- تضمين Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-9 text-center" style="background-color: #80808030;border: double;border-color: #28a74545;">
+                <br>
+                <br>
+                <h2 class="mb-4"> Chooce number of servers</h2>
+
+                <!-- الزر الأول الذي يوجه المستخدم إلى دالة معينة -->
+                <a href="{% url 'details_server1' %}" class="btn btn-primary btn-block mb-4 py-4">one server</a>
+
+                <!-- الزر الثاني الذي يوجه المستخدم إلى دالة أخرى -->
+                <a href="{% url 'details_server2' %}" class="btn btn-success btn-block mb-4 py-4">two server</a>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <!-- تضمين Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

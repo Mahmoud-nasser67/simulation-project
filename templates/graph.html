@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Flow Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* تحسين شكل الصفحة وخلفية المخطط */
+        body {
+            background-color: #1e1e2f; /* لون خلفية الصفحة */
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        canvas {
+            margin: 20px auto;
+            display: block;
+            height: 500px; /* ضبط ارتفاع المخطط */
+            width: 90%;
+        }
+
+        h2 {
+            margin-top: 20px;
+            color: #f0f0f0; /* لون العنوان */
+        }
+    </style>
+</head>
+<body>
+    <h2>Customer Flow Chart</h2>
+    <div style="width: 100%; height: 600px;">
+        <canvas id="customerChart"></canvas>
+    </div>
+
+    <script>
+        // البيانات الممررة من السيرفر
+        const times = {{ times | safe }};
+        const customersInSystem = {{ customers_in_system | safe }};
+
+        const ctx = document.getElementById('customerChart').getContext('2d');
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: times,
+                datasets: [{
+                    label: 'Number of Customers in System',
+                    data: customersInSystem,
+                    backgroundColor: 'rgba(9,100, 0, 0.5)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 2,
+                    fill: true,
+                    stepped: true, // يجعل الرسم بخطوط مستقيمة
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: {
+                            font: {
+                                size: 14
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `Customers: ${context.raw}`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Time (minutes)'
+                        },
+                        ticks: {
+                            autoSkip: false,
+                            maxRotation: 0,
+                            minRotation: 0
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Number of Customers'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Customer Flow Chart</title>-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>-->
+
+<!--</head>-->
+<!--<body>-->
+<!--    <div style="width: 100%; height: 600px;">-->
+<!--        <canvas id="customerChart" ></canvas>-->
+<!--    </div>-->
+<!--    <script>-->
+<!--        // البيانات الممررة من السيرفر-->
+<!--        const times = {{ times | safe }};-->
+<!--        const customersInSystem = {{ customers_in_system | safe }};-->
+
+<!--        const ctx = document.getElementById('customerChart').getContext('2d');-->
+
+<!--        new Chart(ctx, {-->
+<!--            type: 'line',-->
+<!--            data: {-->
+<!--                labels: times,-->
+<!--                datasets: [{-->
+<!--                    label: 'Number of Customers in System',-->
+<!--                    data: customersInSystem,-->
+<!--                    backgroundColor: 'rgba(9,100, 0, 0.5)',-->
+<!--                    borderColor: 'rgba(54, 162, 235, 1)',-->
+<!--                    borderWidth: 2,-->
+<!--                    fill: true,-->
+<!--                    stepped: true, // يجعل الرسم بخطوط مستقيمة-->
+<!--                }]-->
+<!--            },-->
+<!--            options: {-->
+<!--                responsive: true,-->
+<!--                plugins: {-->
+<!--                    legend: {-->
+<!--                        display: true,-->
+<!--                        labels: {-->
+<!--                            font: {-->
+<!--                                size: 14-->
+<!--                            }-->
+<!--                        }-->
+<!--                    },-->
+<!--                    tooltip: {-->
+<!--                        callbacks: {-->
+<!--                            label: function(context) {-->
+<!--                                return `Customers: ${context.raw}`;-->
+<!--                            }-->
+<!--                        }-->
+<!--                    }-->
+<!--                },-->
+<!--                scales: {-->
+<!--                    x: {-->
+<!--                        title: {-->
+<!--                            display: true,-->
+<!--                            text: 'Time (minutes)'-->
+<!--                        },-->
+<!--                        ticks: {-->
+<!--                            autoSkip: false,-->
+<!--                            maxRotation: 0,-->
+<!--                            minRotation: 0-->
+<!--                        }-->
+<!--                    },-->
+<!--                    y: {-->
+<!--                        beginAtZero: true,-->
+<!--                        title: {-->
+<!--                            display: true,-->
+<!--                            text: 'Number of Customers'-->
+<!--                        }-->
+<!--                    }-->
+<!--                }-->
+<!--            }-->
+<!--        });-->
+<!--    </script>-->
+<!--</body>-->
+<!--</html>-->

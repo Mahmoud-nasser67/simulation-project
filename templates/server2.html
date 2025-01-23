@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عرض البيانات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .table-container {
+            display: flex;
+            justify-content: space-evenly;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-direction: row;
+            align-items: baseline;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .column-header {
+            background-color: #f1f1f1;
+            font-weight: bold;
+        }
+        .row-header {
+            background-color: #f1f1f1;
+            font-weight: bold;
+        }
+
+        .conclusion {
+            background-color: #f8f8f8;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: inset -20px -16px 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        .conclusion h3 {
+            margin-bottom: 15px;
+        }
+
+        #downloadBtn {
+            margin-bottom: 20px;
+            text-align: center;
+            background: #58ad58;
+            min-width: 400px;
+            height: 50px;
+            border-radius: 10rem;
+            font-size: 20px;
+        }
+         /* تصميم زر الأيقونة */
+        .icon-btn {
+            font-size: 24px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>عرض البيانات</h1>
+
+    <div class="table-container">
+        <!-- جدول البيانات 1 -->
+        <div class="table">
+            <h3>Data Between Customer Arrivals</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Time Between Arrivals</th>
+                        <th>Probability</th>
+                        <th>Cumulative Probability</th>
+                        <th>Random Digit Assignment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in data1.time_between_arrivals %}
+                        <tr>
+                            <td>{{ i}}</td>  <!-- رقم الفهرس يبدأ من 1 -->
+                            <td>{{ data1.probability|slice:forloop.counter|last }}</td>
+                            <td>{{ data1.cumulative_probability|slice:forloop.counter|last }}</td>
+                            <td>{{ data1.random_digit_assignment|slice:forloop.counter|last }}</td>
+                        </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+        <!-- جدول البيانات 2 -->
+        <div class="table">
+            <h3>Service Time</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Service Time</th>
+                        <th>Probability</th>
+                        <th>Cumulative Probability</th>
+                        <th>Random Digit Assignment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in data2.service_time %}
+                        <tr>
+                            <td>{{ i }}</td>
+                            <td>{{ data2.probability|slice:forloop.counter|last }}</td>
+                            <td>{{ data2.cumulative_probability|slice:forloop.counter|last }}</td>
+                            <td>{{ data2.random_digit_assignment|slice:forloop.counter|last }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <!-- جدول البيانات 3 -->
+        <div class="table">
+            <h3>Service Time</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Service Time</th>
+                        <th>Probability</th>
+                        <th>Cumulative Probability</th>
+                        <th>Random Digit Assignment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in data4.service_time %}
+                        <tr>
+                            <td>{{ i }}</td>
+                            <td>{{ data2.probability|slice:forloop.counter|last }}</td>
+                            <td>{{ data2.cumulative_probability|slice:forloop.counter|last }}</td>
+                            <td>{{ data2.random_digit_assignment|slice:forloop.counter|last }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <h3>Customer Details</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Customer ID</th>
+                <th>Random Time</th>
+                <th>Time Between Arrivals</th>
+                <th>Arrival Time</th>
+                <th>Random Server</th>
+                <th>last customer ser_1</th>
+                <th>last customer ser_2</th>
+                <th>Ideal Server one</th>
+                <th>Ideal Server two</th>
+                <th>Service one Start</th>
+                <th>Duration</th>
+                <th>Service one End</th>
+                <th>Service two Start</th>
+                <th>Duration</th>
+                <th>Service two End</th>
+                <th>Waiting Time</th>
+
+                <th>Time Spent in System</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for i in data3.cust_id %}
+                <tr>
+                    <td>{{ i }}</td>
+                    <td>{{ data3.random_interval|slice:forloop.counter|last }}</td>
+                    <td>{{ data3.interval_time|slice:forloop.counter|last }}</td>
+                    <td>{{ data3.arrival_clock|slice:forloop.counter|last }}</td>
+                    <td>{{ data3.server_random|slice:forloop.counter|last }}</td>
+                    <td>{{ data3.last_customer_ser_1|slice:forloop.counter|last }}</td>
+                    <td>{{ data3.last_customer_ser_2|slice:forloop.counter|last }}</td>
+                    <td>{{ data3.server_ideal|slice:forloop.counter|last }}</td>
+                    <td>{{ data3.server2_idle|slice:forloop.counter|last }}</td>
+                    <td>{{ data3.server1_start|slice:forloop.counter|last }}</td>
+                    <td>{{ data3.duration|slice:forloop.counter|last }}</td>
+                    <td>{{ data3.server1_end|slice:forloop.counter|last }}</td>
+                    <td>{{ data3.server2_start|slice:forloop.counter|last }}</td>
+                    <td>{{ data3.server2_duration|slice:forloop.counter|last }}</td>
+                    <td>{{ data3.server2_end|slice:forloop.counter|last }}</td>
+                    <td>{{ data3.cust_Waiting|slice:forloop.counter|last }}</td>
+                    <td>{{ data3.time_customer_spends_in_system|slice:forloop.counter|last }}</td>
+
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="conclusion">
+        <h3>Conclusions</h3>
+        <ul>
+            <li>Average Waiting Time for Customer: {{ avarge_waiting_time_for_custumer }}</li>
+            <li>Probability That a Customer Waits: {{ probability_that_a_customer_wait }}</li>
+
+        </ul>
+    </div>
+    <br>
+    <div class="row" style="display: flex;justify-content: space-around;">
+        <div class="download-btn">
+            <button class="btn btn-primary" id="downloadBtn">
+                <i class="fas fa-file-download"></i> download Excel
+            </button>
+        </div>
+
+       <button id="changeBackgroundColorBtn" class="icon-btn">
+            <i class="fas fa-moon"></i>
+       </button>
+    </div>
+</div>
+
+<script>
+    document.getElementById("downloadBtn").addEventListener("click", function() {
+        // Call a function to generate and download the Excel file
+        window.location.href = '{{ MEDIA_URL }}/media/excel_file/simulation_data.xlsx';  // URL to trigger Excel download in your Django app
+    });
+</script>
+
+<script>
+
+    let newBackgroundColor = "rgba(126, 95, 95, 0.9)";
+    let whiteColor = "rgb(255, 255, 255)";
+
+    document.getElementById('changeBackgroundColorBtn').onclick = function () {
+        const container = document.querySelector('.container');
+        const currentBackgroundColor = getComputedStyle(container).backgroundColor;
+        if (currentBackgroundColor === newBackgroundColor) {
+            container.style.backgroundColor = whiteColor;
+        } else {
+            container.style.backgroundColor = newBackgroundColor;
+        }
+    };
+</script>
+
+
+</body>
+</html>
